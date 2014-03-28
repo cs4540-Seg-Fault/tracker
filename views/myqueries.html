@@ -15,7 +15,7 @@ if (!defined('MOODLE_INTERNAL')) {
 
 $queries = $DB->get_records_select('tracker_query', "userid = {$USER->id} AND trackerid = {$tracker->id} ");
 echo "<br/>";
-echo $OUTPUT->heading(get_string('myqueries', 'tracker'));
+echo "<u>" . $OUTPUT->heading(get_string('myqueries', 'tracker')) . "</u>";
 $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 ?>
 <center>

@@ -14,7 +14,7 @@ if (!defined('MOODLE_INTERNAL')) {
 }
 
 echo "<br/>";
-echo $OUTPUT->heading(get_string('mywatches', 'tracker'));
+echo "<u>" . $OUTPUT->heading(get_string('mywatches', 'tracker')) . "</u>";
 $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 $mywatches = tracker_getwatches($tracker->id, $USER->id);
 ?>
