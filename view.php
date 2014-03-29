@@ -15,7 +15,7 @@
 	require_once("../../config.php");
 	require_once($CFG->dirroot."/mod/tracker/lib.php");
 	require_once($CFG->dirroot."/mod/tracker/locallib.php");
-	
+
 	// $usehtmleditor = false;
 	// $editorfields = '';
 
@@ -35,20 +35,20 @@
 	    if (! $cm = get_coursemodule_from_id('tracker', $id)) {
 	        print_error('errorcoursemodid', 'tracker');
 	    }
-		
+
 	    if (! $course = $DB->get_record('course', array('id' => $cm->course))) {
 	        print_error('errorcoursemisconfigured', 'tracker');
 	    }
-		
+
 	    if (! $tracker = $DB->get_record('tracker', array('id' => $cm->instance))) {
 	        print_error('errormoduleincorrect', 'tracker');
 	    }
 	} else {
-		
+
 	    if (! $tracker = $DB->get_record('tracker', array('id' => $a))) {
 	        print_error('errormoduleincorrect', 'tracker');
 	    }
-		
+
 	    if (! $course = $DB->get_record('course', array('id' => $tracker->course))) {
 	        print_error('errorcoursemisconfigured', 'tracker');
 	    }
@@ -70,19 +70,19 @@
 
 	$context = context_module::instance($cm->id);
 	require_login($course->id);
-	
+
 	add_to_log($course->id, 'tracker', "$view:$screen/$action", "view.php?id=$cm->id", "$tracker->id", $cm->id);
-	
+
 	$usehtmleditor = can_use_html_editor();
 	$defaultformat = FORMAT_MOODLE;
 	tracker_loadpreferences($tracker->id, $USER->id);
-	
+
 	/// Search controller - special implementation
 	// TODO : consider incorporing this controller back into standard MVC
 	if ($action == 'searchforissues'){
 	    $search = optional_param('search', null, PARAM_CLEANHTML);
 	    $saveasreport = optional_param('saveasreport', null, PARAM_CLEANHTML);
-	    
+
 	    if (!empty($search)){       //search for issues
 	        tracker_searchforissues($tracker, $cm->id);
 	    } elseif (!empty ($saveasreport)){        //save search as a report
@@ -96,7 +96,7 @@
 	        redirect("view.php?id={$cm->id}&amp;screen={$returnview}");
 	    }
 	}
-	
+
 	$strtrackers = get_string('modulenameplural', 'tracker');
 	$strtracker  = get_string('modulename', 'tracker');
 
@@ -148,7 +148,7 @@
 	if (has_capability('mod/tracker:configure', $context)){
 	    $rows[0][] = new tabobject('admin', "view.php?id={$cm->id}&amp;view=admin", get_string('administration', 'tracker'));
 	}
-	
+
 	/// submenus
 	$selected = null;
 	$activated = null;
