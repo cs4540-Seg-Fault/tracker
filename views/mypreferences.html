@@ -15,7 +15,6 @@ if (!defined('MOODLE_INTERNAL')) {
 echo "<br/>";
 echo "<u>" . $OUTPUT->heading(get_string('mypreferences', 'tracker')) . "</u>";
 $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
-
 tracker_loadpreferences($tracker->id, $USER->id);
 ?>
 <center>
