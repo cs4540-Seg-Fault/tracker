@@ -197,13 +197,13 @@
 	    default:
 	}
 	if (!empty($screen)){
-	    $selected = $screen;
-	    $activated = array($view);
+	    $selected = $screen; // This is the selected sub menu (Views, Resolved, etc.)
+	    $activated = array($view); // f
 	} else {
 	    $selected = $view;
 	}
 	echo $OUTPUT->container_start('mod-header');
-	print_tabs($rows, $selected, '', $activated);
+	print_tabs($rows, $selected, '', $activated); // Magic happens here... Probably prints the menu items at the top
 	echo '<br/>';
 	echo $OUTPUT->container_end();
 
@@ -214,6 +214,7 @@
 	/// routing to appropriate view against situation
 	// echo "routing : $view:$screen:$action ";
 
+	// Outputs a body that corresponds to the needed view
 	if ($view == 'reportanissue'){
 	    if (has_capability('mod/tracker:report', $context)){
 	        include "views/issuereportform.html";
@@ -222,8 +223,8 @@
 	    }
 	} elseif ($view == 'view'){
 	    $result = 0 ;
-	    if ($action != ''){
-	        $result = include "views/view.controller.php";
+	    if ($action != ''){ // If there is an action (I.E. an action like delete), use the view.controller to handle it
+	        $result = include "views/view.controller.php"; // No no no no NO. Absolutely not. This is terrifying.
 	    }
 	    if ($result != -1){
 	        switch($screen){
@@ -287,23 +288,21 @@
 	        }
 	    } */
 	} elseif ($view == 'reports') {
-	    $result = 0;
-	    if ($result != -1){
-	        switch($screen){
-	            case 'status': 
-	                include "report/status.html"; 
-	                break;
-	            case 'evolution': 
-	                include "report/evolution.html";
-	                break;
-	            case 'print': 
-	                include "report/print.html";
-	                break;
-	        }
+		// Removed a redundant variable
+        switch($screen){
+            case 'status': 
+                include "report/status.html"; 
+                break;
+            case 'evolution': 
+                include "report/evolution.html";
+                break;
+            case 'print': 
+                include "report/print.html";
+                break;
 	    }
 	} elseif ($view == 'admin') {
 	    $result = 0;
-	    if ($action != ''){
+	    if ($action != ''){ // Exactly the same kind of method as the view controller
 	        $result = include "views/admin.controller.php";
 	    }
 	    if ($result != -1){
@@ -322,7 +321,7 @@
 	}
 	elseif ($view == 'profile'){
 	    $result = 0;
-	    if ($action != ''){
+	    if ($action != ''){ // Again with the controller
 	        $result = include "views/profile.controller.php";
 	    }
 	    if ($result != -1){
