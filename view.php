@@ -11,7 +11,6 @@
 *
 *
 */
-
 	require_once("../../config.php");
 	require_once($CFG->dirroot."/mod/tracker/lib.php");
 	require_once($CFG->dirroot."/mod/tracker/locallib.php");
