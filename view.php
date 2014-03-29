@@ -263,7 +263,9 @@
 	                break;
 	        }
 	    }
-	} elseif ($view == 'resolved'){
+	} elseif ($view == 'resolved'){ 
+		echo "Yeah, this isn't working. Progress!"; // This was where the resolved views were loaded
+	/*
 	    $result = 0 ;
 	    if ($action != ''){
 	        $result = include "views/view.controller.php";
@@ -283,7 +285,7 @@
 	                } 
 	                break;
 	        }
-	    }
+	    } */
 	} elseif ($view == 'reports') {
 	    $result = 0;
 	    if ($result != -1){
