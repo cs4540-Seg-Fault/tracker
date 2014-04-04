@@ -58,7 +58,7 @@
 
 	// redirect (before outputting) traps
 	if ($view == "view" && (empty($screen) || $screen == 'viewanissue' || $screen == 'editanissue') && empty($issueid)){
-        redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=browse");
+        redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
 	}
 
 	// implicit routing
@@ -139,7 +139,7 @@
 	/// Print tabs with options for user
 	$rows[0][] = new tabobject('reportanissue', "view.php?id={$cm->id}&amp;view=reportanissue", get_string('newissue', 'tracker'));
 	$rows[0][] = new tabobject('view', "view.php?id={$cm->id}&amp;view=view", get_string('view', 'tracker').' ('.$totalissues.' '.get_string('issues','tracker').')');
-	$rows[0][] = new tabobject('resolved', "view.php?id={$cm->id}&amp;view=resolved", get_string('resolvedplural', 'tracker').' ('.$totalresolvedissues.' '.get_string('issues','tracker').')');
+	//$rows[0][] = new tabobject('resolved', "view.php?id={$cm->id}&amp;view=resolved", get_string('resolvedplural', 'tracker').' ('.$totalresolvedissues.' '.get_string('issues','tracker').')');
 	$rows[0][] = new tabobject('profile', "view.php?id={$cm->id}&amp;view=profile", get_string('profile', 'tracker'));
 	if (has_capability('mod/tracker:viewreports', $context)){
 		$rows[0][] = new tabobject('reports', "view.php?id={$cm->id}&amp;view=reports", get_string('reports', 'tracker'));
@@ -165,14 +165,14 @@
 	        }
 	        $rows[1][] = new tabobject('search', "view.php?id={$cm->id}&amp;view=view&amp;screen=search", get_string('search', 'tracker'));
 	        break;
-	    case 'resolved' :
-	        if (!preg_match("/mytickets|browse/", $screen)) $screen = 'mytickets';
-	        $rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=mytickets", get_string('mytickets', 'tracker'));
-	        //$rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
-	        if (has_capability('mod/tracker:viewallissues', $context) || $tracker->supportmode == 'bugtracker'){
-	            $rows[1][] = new tabobject('browse', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=browse", get_string('browse', 'tracker'));
-	        }
-	    break;
+// 	    case 'resolved' :
+// 	        if (!preg_match("/mytickets|browse/", $screen)) $screen = 'mytickets';
+// 	        $rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=mytickets", get_string('mytickets', 'tracker'));
+// 	        //$rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
+// 	        if (has_capability('mod/tracker:viewallissues', $context) || $tracker->supportmode == 'bugtracker'){
+// 	            $rows[1][] = new tabobject('browse', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=browse", get_string('browse', 'tracker'));
+// 	        }
+// 	    	break;
 	    case 'profile':
 	        if (!preg_match("/myprofile|mypreferences|mywatches|myqueries/", $screen)) $screen = 'myprofile';
 	        $rows[1][] = new tabobject('myprofile', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myprofile", get_string('myprofile', 'tracker'));
@@ -264,31 +264,34 @@
 	                break;
 	        }
 	    }
-	} elseif ($view == 'resolved'){ 
-		echo "Yeah, this isn't working. Progress!"; // This was where the resolved views were loaded
-	/*
-	    $result = 0 ;
-	    if ($action != ''){
-	        $result = include "views/view.controller.php";
-	    }
-	    if ($result != -1){
-	        switch($screen){
-	            case 'mytickets': 
-	                $resolved = 1;
-	                include "views/viewmyticketslist.php";
-	                break;
-	            case 'browse': 
-	                if (!has_capability('mod/tracker:viewallissues', $context)){
-	                    print_error('errornoaccessallissues', 'tracker');
-	                } else {
-	                    $resolved = 1;
-	                    include "views/viewissuelist.php";
-	                } 
-	                break;
-	        }
-	    } */
+// 	} elseif ($view == 'resolved'){ 
+// 	    $result = 0 ;
+// 	    if ($action != ''){
+// 	        $result = include "views/view.controller.php";
+// 	    }
+// 	    if ($result != -1){
+// 	        switch($screen){
+// 	            case 'mytickets': 
+// 	                $resolved = 1;
+// 	                include "views/viewmyticketslist.php";
+// 	                break;
+// 	            case 'browse': 
+// 	                if (!has_capability('mod/tracker:viewallissues', $context)){
+// 	                    print_error('errornoaccessallissues', 'tracker');
+// 	                } else {
+// 	                    $resolved = 1;
+// 	                    include "views/viewissuelist.php";
+// 	                } 
+// 	                break;
+// 	        }
+// 	    }
 	} elseif ($view == 'reports') {
-		// Removed a redundant variable
+		
+		if (!has_capability('mod/tracker:viewreports', $context)){
+			print_error('accessdenied', 'tracker');
+			//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+		}
+		
         switch($screen){
             case 'status': 
                 include "report/status.html"; 
@@ -301,6 +304,12 @@
                 break;
 	    }
 	} elseif ($view == 'admin') {
+		
+		if (!has_capability('mod/tracker:configure', $context)){
+			print_error('accessdenied', 'tracker');
+			//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+		}
+		
 	    $result = 0;
 	    if ($action != ''){ // Exactly the same kind of method as the view controller
 	        $result = include "views/admin.controller.php";
@@ -314,6 +323,10 @@
 	                include "views/admin_manageelements.html";
 	                break;
 	            case 'managenetwork': 
+	            	if (!has_capability('mod/tracker:configurenetwork', $context)){
+	            		print_error('accessdenied', 'tracker');
+	            		//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+	            	}
 	                include "views/admin_mnetwork.html";
 	                break;
 	        }

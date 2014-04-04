@@ -45,10 +45,10 @@ if ($action == 'submitanissue'){
     $stc->statusfrom = POSTED;
     $stc->statusto = POSTED;    
     $DB->insert_record('tracker_state_change', $stc);
-    echo $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
-    print_string('thanks', 'tracker');
-    echo $OUTPUT->box_end();
-    echo $OUTPUT->continue_button("view.php?id={$cm->id}view=view&amp;screen=browse");
+    //echo $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
+    //print_string('thanks', 'tracker');
+    //echo $OUTPUT->box_end();
+    //echo $OUTPUT->continue_button("view.php?id={$cm->id}view=view&amp;screen=mytickets");
     // notify all admins
     if ($tracker->allownotifications){
         tracker_notify_submission($issue, $cm, $tracker);
@@ -56,7 +56,8 @@ if ($action == 'submitanissue'){
             tracker_notifyccs_changeownership($issue->id, $tracker);
         }
     }
-    return -1;
+    redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+    //return -1;
 }
 /************************************* update an issue *****************************/
 elseif ($action == 'updateanissue'){
