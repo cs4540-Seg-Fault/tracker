@@ -56,7 +56,7 @@ if ($action == 'submitanissue'){
             tracker_notifyccs_changeownership($issue->id, $tracker);
         }
     }
-    redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+    redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=search");
     //return -1;
 }
 /************************************* update an issue *****************************/

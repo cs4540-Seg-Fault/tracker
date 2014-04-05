@@ -58,13 +58,15 @@
 
 	// redirect (before outputting) traps
 	if ($view == "view" && (empty($screen) || $screen == 'viewanissue' || $screen == 'editanissue') && empty($issueid)){
-        redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
+        redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=search");
 	}
 
 	// implicit routing
 	if ($issueid){
 		$view = 'view';
-		if (empty($screen)) $screen = 'viewanissue';
+		if (empty($screen)) {
+			$screen = 'viewanissue';
+		}
 	}
 
 	$context = context_module::instance($cm->id);
@@ -136,8 +138,13 @@
 
 	$totalissues = $DB->count_records_select('tracker_issue', "trackerid = {$tracker->id} AND status <> ".RESOLVED." AND status <> ".ABANDONNED);
 	$totalresolvedissues = $DB->count_records_select('tracker_issue', "trackerid = $tracker->id AND (status = ".RESOLVED." OR status = ".ABANDONNED.")");
+	
 	/// Print tabs with options for user
-	$rows[0][] = new tabobject('reportanissue', "view.php?id={$cm->id}&amp;view=reportanissue", get_string('newissue', 'tracker'));
+
+	//only display the option to create a new ticket if they cannot manage 
+	if(!has_capability('mod/tracker:manage', $context)) {
+		$rows[0][] = new tabobject('reportanissue', "view.php?id={$cm->id}&amp;view=reportanissue", get_string('newissue', 'tracker'));
+	}
 	$rows[0][] = new tabobject('view', "view.php?id={$cm->id}&amp;view=view", get_string('view', 'tracker').' ('.$totalissues.' '.get_string('issues','tracker').')');
 	//$rows[0][] = new tabobject('resolved', "view.php?id={$cm->id}&amp;view=resolved", get_string('resolvedplural', 'tracker').' ('.$totalresolvedissues.' '.get_string('issues','tracker').')');
 	$rows[0][] = new tabobject('profile', "view.php?id={$cm->id}&amp;view=profile", get_string('profile', 'tracker'));
@@ -157,12 +164,27 @@
 	        $selected = $view;
 	    	break;
 	    case 'view' :
-	        if (!preg_match("/mytickets|mywork|browse|search|viewanissue|editanissue/", $screen)) $screen = 'mytickets';
-	        $rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets", get_string('mytickets', 'tracker'));
-	        $rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
+	    	// set default screen in view if it is not specified
+	        if (!preg_match("/mytickets|mywork|browse|search|viewanissue|editanissue/", $screen)) {
+	        	$screen = 'search';
+	        }
+	        
+	        //only display the option to view my tickets if they cannot manage
+	        if(!has_capability('mod/tracker:manage', $context)) {
+	        	$rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets", get_string('mytickets', 'tracker'));
+	        }
+	        
+	        // only display the option to view my work if the user can be assigned to tickets
+	        if(has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context) || has_capability('mod/tracker:develop', $context)) {
+	        	$rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
+	        }
+	        
+	        // only display the option to view all issues if the user has that capability
 	        if (has_capability('mod/tracker:viewallissues', $context) || $tracker->supportmode == 'bugtracker'){
 	            $rows[1][] = new tabobject('browse', "view.php?id={$cm->id}&amp;view=view&amp;screen=browse", get_string('browse', 'tracker'));
 	        }
+	        
+	        // display the option to search
 	        $rows[1][] = new tabobject('search', "view.php?id={$cm->id}&amp;view=view&amp;screen=search", get_string('search', 'tracker'));
 	        break;
 // 	    case 'resolved' :
@@ -216,7 +238,9 @@
 
 	// Outputs a body that corresponds to the needed view
 	if ($view == 'reportanissue'){
-	    if (has_capability('mod/tracker:report', $context)){
+		if(has_capability('mod/tracker:manage', $context)) {
+			redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=search");
+		} else if (has_capability('mod/tracker:report', $context)){
 	        include "views/issuereportform.html";
 	    } else {
 	        echo $OUTPUT->notification(get_string('youneedanaccount','tracker'), $CFG->wwwroot."/course/view.php?id={$course->id}");
