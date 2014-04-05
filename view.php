@@ -136,8 +136,8 @@
 
 	echo $OUTPUT->box_start('', 'tracker-view');
 
-	$totalissues = $DB->count_records_select('tracker_issue', "trackerid = {$tracker->id} AND status <> ".RESOLVED." AND status <> ".ABANDONNED);
-	$totalresolvedissues = $DB->count_records_select('tracker_issue', "trackerid = $tracker->id AND (status = ".RESOLVED." OR status = ".ABANDONNED.")");
+	$totalissues = $DB->count_records_select('tracker_issue', "trackerid = {$tracker->id}");// AND status <> ".RESOLVED." AND status <> ".ABANDONNED);
+	//$totalresolvedissues = $DB->count_records_select('tracker_issue', "trackerid = $tracker->id AND (status = ".RESOLVED." OR status = ".ABANDONNED.")");
 	
 	/// Print tabs with options for user
 
