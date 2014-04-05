@@ -16,26 +16,6 @@
     $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 ?>
 
-<center>
-
-<!-- Print Bug Form -->
-<form name="byidform" action="view.php" method="get">
-<input type="hidden" name="what" value="searchforissues" />
-<input type="hidden" name="screen" value="browse" />
-<input type="hidden" name="view" value="view" />
-<input type="hidden" name="id" value="<?php p($cm->id) ?>" />
-
-<table border="0" cellpadding="5">
-    <tr>
-        <td align="right" width="150"><b><?php print_string('issuenumber', 'tracker') ?>:</b></td>
-        <td width="200" align="left">
-            <input type="text" name="issuenumber" value="" size="5" />
-        </td>
-        <td width="200">&nbsp;</td>
-        <td width="200"></td>
-    </tr>
-</table>
-</form>
 <?php
     $OUTPUT->box_end();
     $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
@@ -48,7 +28,16 @@
 <script type="text/javascript" language="javascript">
 var datereporteditems = ['day','month','year'];
 </script>
-
+<table border="0" cellpadding="5">
+    <tr>
+        <td align="right" width="150"><b><?php print_string('issuenumber', 'tracker') ?>:</b></td>
+        <td width="200" align="left">
+            <input type="text" name="issuenumber" value="" size="5" />
+        </td>
+        <td width="200">&nbsp;</td>
+        <td width="200"></td>
+    </tr>
+</table>
 <table border="0" cellpadding="5" width="800">
     <tr>
         <td align="right" width="130" valign="top"><b><?php print_string('reportedby', 'tracker') ?>:</b><br /></td>
