@@ -13,11 +13,11 @@
         die('Direct access to this script is forbidden.');    ///  It must be included from view.php in mod/tracker
     }
 
-    $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 ?>
 
+<center>
+
 <?php
-    $OUTPUT->box_end();
     $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 ?>
 <form name="searchform" action="view.php" method="get">
@@ -93,6 +93,7 @@ var datereporteditems = ['day','month','year'];
     <tr valign="top">
         <td align="center" colspan="4">
             <input type="submit" name="search" value="<?php print_string('search', 'tracker') ?>" />
+            <input type="button" name="savequery_btn" value="<?php print_string('savequery', 'tracker') ?>" onclick="document.forms['searchform'].view.value = 'profile';document.forms['searchform'].screen.value = 'myqueries';document.forms['searchform'].what.value = 'savequery';document.forms['searchform'].submit();" />
         </td>
     </tr>
 </table>
