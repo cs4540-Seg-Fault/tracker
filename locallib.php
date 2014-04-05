@@ -406,10 +406,10 @@ function tracker_constructsearchqueries($trackerid, $fields, $own = false){
             $dateend = $datebegin + 86400;
             $elementsSearchConstraint .= " AND i.datereported > {$datebegin} AND i.datereported < {$dateend} ";
         }
-
+				
         if ($key == 'description'){
-            $tokens = explode(' ', $fields[$key][0], ' ');
-            foreach ($tokens as $token){
+            $tokens = explode(' ', $fields[$key][0]);
+            foreach ($tokens as $descriptiontoken){
                 $elementsSearchConstraint .= " AND i.description LIKE '%{$descriptiontoken}%' ";
             }
         }
