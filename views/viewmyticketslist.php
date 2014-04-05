@@ -111,10 +111,10 @@ if (isset($searchqueries)){
 /// display list of my issues
 ?>
 <center>
-<table border="1" width="100%">
 <?php
 if (isset($searchqueries)){
 ?>
+<table border="1" width="100%">
     <tr>
         <td colspan="2">
             <?php print_string('searchresults', 'tracker') ?>: <?php echo $numrecords ?> <br/>
@@ -123,10 +123,10 @@ if (isset($searchqueries)){
                 <a href="view.php?id=<?php p($cm->id) ?>&amp;what=clearsearch"><?php print_string('clearsearch', 'tracker') ?></a>
         </td>
     </tr>
+</table>
 <?php
 }
 ?>      
-</table>
 </center>
 <form name="manageform" action="view.php" method="post">
 <input type="hidden" name="id" value="<?php p($cm->id) ?>" />
