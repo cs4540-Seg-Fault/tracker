@@ -174,11 +174,11 @@
 // 	        }
 // 	    	break;
 	    case 'profile':
-	        if (!preg_match("/myprofile|mypreferences|mywatches|myqueries/", $screen)) $screen = 'myprofile';
+	        if (!preg_match("/myprofile|mypreferences|mywatches/", $screen)) $screen = 'myprofile';
 	        $rows[1][] = new tabobject('myprofile', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myprofile", get_string('myprofile', 'tracker'));
 	        $rows[1][] = new tabobject('mypreferences', "view.php?id={$cm->id}&amp;view=profile&amp;screen=mypreferences", get_string('mypreferences', 'tracker'));
 	        $rows[1][] = new tabobject('mywatches', "view.php?id={$cm->id}&amp;view=profile&amp;screen=mywatches", get_string('mywatches', 'tracker'));
-	        $rows[1][] = new tabobject('myqueries', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myqueries", get_string('myqueries', 'tracker'));
+	        //$rows[1][] = new tabobject('myqueries', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myqueries", get_string('myqueries', 'tracker'));
 	    break;
 	    case 'reports':
 	        if (!preg_match("/status|evolution|print/", $screen)) $screen = 'status';
@@ -348,9 +348,9 @@
 	            case 'mywatches' :
 	                include "views/mywatches.html";
 	                break;
-	            case 'myqueries':
+	            /*case 'myqueries':
 	                include "views/myqueries.html";
-	                break;
+	                break;*/
 	        }
 	    }
 	} else {
