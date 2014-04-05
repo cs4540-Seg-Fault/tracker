@@ -43,6 +43,7 @@ if ($page <= 0){
 }
 
 if (isset($searchqueries)){
+		print_r($searchqueries);
     /* SEARCH DEBUG 
     $strsql = str_replace("\n", "<br/>", $searchqueries->count);
     $strsql = str_replace("\t", "&nbsp;&nbsp;&nbsp;", $strsql);

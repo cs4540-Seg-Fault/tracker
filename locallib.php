@@ -392,9 +392,11 @@ function tracker_constructsearchqueries($trackerid, $fields, $own = false){
     $elementsSearchConstraint = '';
     foreach ($keys as $key){
         if ($key == 'id'){
+        		$cnt = 0;
             $elementsSearchConstraint .= ' AND  (';
             foreach ($fields[$key] as $idtoken){
-                $elementsSearchConstraint .= (empty($idquery)) ? 'i.id =' . $idtoken : ' OR i.id = ' . $idtoken ;
+                $elementsSearchConstraint .= ($cnt == 0) ? 'i.id = ' . $idtoken : ' OR i.id = ' . $idtoken ;
+                $cnt++;
             }
             $elementsSearchConstraint .= ')';
         }
@@ -523,7 +525,7 @@ function tracker_constructsearchqueries($trackerid, $fields, $own = false){
 function tracker_extractsearchparametersfrompost(){
     $count = 0;
     $fields = array();
-    $issuenumber = optional_param('issueid', '', PARAM_INT);
+    $issuenumber = optional_param('issueid', '', PARAM_CLEANHTML);
     if (!empty ($issuenumber)){
         $issuenumberarray = explode(',', $issuenumber);
         foreach ($issuenumberarray as $issueid){
@@ -539,10 +541,11 @@ function tracker_extractsearchparametersfrompost(){
             $month = optional_param('month', '', PARAM_INT);
             $day = optional_param('day', '', PARAM_INT);
             $year = optional_param('year', '', PARAM_INT);
-        
+            
             if (!empty($month) && !empty($day) && !empty($year)){
                 $datereported = make_timestamp($year, $month, $day);
                 $fields['datereported'][] = $datereported;
+                $fields['checkdate'][] = true;
             }
         }
         
@@ -563,7 +566,7 @@ function tracker_extractsearchparametersfrompost(){
         
         $keys = array_keys($_POST);                         // get the key value of all the fields submitted
         $elementkeys = preg_grep('/element./' , $keys);     // filter out only the element keys
-        
+
         foreach ($elementkeys as $elementkey){
             preg_match('/element(.*)$/', $elementkey, $elementid);
             if (!empty($_POST[$elementkey])){
@@ -776,11 +779,11 @@ function tracker_searchforissues(&$tracker, $cmid){
     $success = tracker_setsearchcookies($fields);
     
     if ($success){
-        if ($tracker->supportmode == 'bugtracker'){
+        //if ($tracker->supportmode == 'bugtracker'){
             redirect ("view.php?id={$cmid}&amp;view=view&amp;screen=browse");
-        } else {
-            redirect("view.php?id={$cmid}&amp;view=view&amp;screen=mytickets");
-		}
+        //} else {
+        //    redirect("view.php?id={$cmid}&amp;view=view&amp;screen=mytickets");
+		//}
     } else {
         print_error('errorcookie', 'tracker', '', $cookie);
     }

@@ -20,7 +20,7 @@
 <?php
     $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
 ?>
-<form name="searchform" action="view.php" method="get">
+<form name="searchform" action="view.php" method="post">
 <input type="hidden" name="what" value="searchforissues" />
 <input type="hidden" name="screen" value="<?php echo ($tracker->supportmode == 'bugtracker') ? 'browse' : 'mytickets' ; ?>" />
 <input type="hidden" name="view" value="view" />
@@ -32,7 +32,7 @@ var datereporteditems = ['day','month','year'];
     <tr>
         <td align="right" width="150"><b><?php print_string('issuenumber', 'tracker') ?>:</b></td>
         <td width="200" align="left">
-            <input type="text" name="issuenumber" value="" size="5" />
+            <input type="text" name="issueid" value="" size="5" />
         </td>
         <td width="200">&nbsp;</td>
         <td width="200"></td>
@@ -61,7 +61,7 @@ var datereporteditems = ['day','month','year'];
         <td width="280" valign="top" align="left">
             <input type="checkbox" name="checkdate" value="1" onclick="return lockoptions('searchform', 'checkdate', datereporteditems)" />
             <?php
-            echo html_writer::select_time('days', 'days'); 
+            echo html_writer::select_time('days', 'day'); 
             echo html_writer::select_time('months', 'month'); 
             echo html_writer::select_time('years', 'year'); 
             ?>
