@@ -168,7 +168,7 @@ $table->define_headers($tableheaders);
 $table->define_baseurl($CFG->wwwroot.'/mod/tracker/view.php?id='.$cm->id.'&view='.$view.'&screen='.$screen.'&alltracks='.$alltracks);
 
 $table->sortable(true, 'datereported', SORT_DESC); //sorted by datereported by default
-$table->collapsible(true);
+$table->collapsible(false);
 $table->initialbars(true);
 
 // allow column hiding

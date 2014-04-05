@@ -55,17 +55,16 @@ if (isset($searchqueries)){
     $numrecords = $DB->count_records_sql($searchqueries->count);
 } else {
     // check we display only resolved tickets or working
-    if ($resolved){
+   /*if ($resolved){
         $resolvedclause = " AND
            (status = ".RESOLVED." OR
            status = ".ABANDONNED.")
         ";
-    } else {
+    } else  {
         $resolvedclause = " AND
            status <> ".RESOLVED." AND
            status <> ".ABANDONNED."
-        ";
-    }
+        ";}*/
 
     $sql = "
         SELECT 
@@ -89,7 +88,7 @@ if (isset($searchqueries)){
         WHERE 
             i.reportedby = u.id AND 
             i.trackerid = {$tracker->id}
-            $resolvedclause
+            
         GROUP BY 
             i.id, 
             i.summary, 
