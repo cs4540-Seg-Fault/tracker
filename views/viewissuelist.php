@@ -171,14 +171,14 @@ if ($resolved){
     }
 }
 
-$table = new flexible_table('mod-tracker-issuelist');
+$table = new flexible_table('mod-tracker-issuelist'); // Creates a custom table
 $table->define_columns($tablecolumns);
 $table->define_headers($tableheaders);
 
 $table->define_baseurl($CFG->wwwroot.'/mod/tracker/view.php?id='.$cm->id.'&view='.$view.'&screen='.$screen);
 
 $table->sortable(true, 'resolutionpriority', SORT_ASC); //sorted by priority by default
-$table->collapsible(true);
+$table->collapsible(false);
 $table->initialbars(true);
 
 // allow column hiding
