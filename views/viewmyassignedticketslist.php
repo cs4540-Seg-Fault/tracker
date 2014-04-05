@@ -119,12 +119,10 @@ if (isset($searchqueries)){
 }
 
 /// display list of my issues
+if (isset($searchqueries)){
 ?>
 <center>
 <table border="1" width="100%">
-<?php
-if (isset($searchqueries)){
-?>
     <tr>
         <td colspan="2">
             <?php print_string('searchresults', 'tracker') ?>: <?php echo $numrecords ?> <br/>
@@ -132,12 +130,12 @@ if (isset($searchqueries)){
         <td colspan="2" align="right">
                 <a href="view.php?id=<?php p($cm->id) ?>&amp;what=clearsearch"><?php print_string('clearsearch', 'tracker') ?></a>
         </td>
-    </tr>
-<?php
-}
-?>      
+    </tr>      
 </table>
 </center>
+<?php
+}
+?>
 <form name="manageform" action="view.php" method="post">
 <input type="checkbox" name="alltracks" value="1" <?php if ($alltracks) echo "checked=\"checked\"" ?> /> <?php echo get_string('alltracks', 'tracker') ?>
 <input type="hidden" name="id" value="<?php p($cm->id) ?>" />
