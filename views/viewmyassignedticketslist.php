@@ -59,17 +59,17 @@ if (isset($searchqueries)){
 } else {
 	$singletrackerclause = (empty($alltracks)) ? " AND i.trackerid = {$tracker->id} " : '' ;
 	
-    if ($resolved){
-        $resolvedclause = " AND
-           (status = ".RESOLVED." OR
-           status = ".ABANDONNED.")
-        ";
-    } else {
-        $resolvedclause = " AND
-           status <> ".RESOLVED." AND
-           status <> ".ABANDONNED."
-        ";
-    }
+//     if ($resolved){
+//         $resolvedclause = " AND
+//            (status = ".RESOLVED." OR
+//            status = ".ABANDONNED.")
+//         ";
+//     } else {
+//         $resolvedclause = " AND
+//            status <> ".RESOLVED." AND
+//            status <> ".ABANDONNED."
+//         ";
+//     }
 
     $sql = "
         SELECT 
@@ -95,7 +95,6 @@ if (isset($searchqueries)){
         WHERE 
             i.assignedto = ? 
             {$singletrackerclause}
-            $resolvedclause
         GROUP BY 
             i.id,
             i.summary, 
@@ -113,7 +112,6 @@ if (isset($searchqueries)){
         WHERE 
             i.assignedto = ? 
             {$singletrackerclause}
-            $resolvedclause
     ";
     $numrecords = $DB->count_records_sql($sqlcount, array($USER->id));
 }
@@ -232,7 +230,7 @@ if (!empty($issues)){
                 $developersmenu[$developer->id] = fullname($developer);
             }
         } elseif (has_capability('mod/tracker:resolve', $context)){ // resolvers can give a bug back to managers
-            $status = html_writer::select($STATUSKEYS, "status{$issue->id}", $issue->status, '', "document.forms['manageform'].schanged{$issue->id}.value = 1;", '', true) . "<input type=\"hidden\" name=\"schanged{$issue->id}\" value=\"0\" />";
+            $status = choose_from_menu($STATUSKEYS, "status{$issue->id}", $issue->status, '', "document.forms['manageform'].schanged{$issue->id}.value = 1;", '', true) . "<input type=\"hidden\" name=\"schanged{$issue->id}\" value=\"0\" />";
             $managers = get_users_by_capability($context, 'mod/tracker:manage', 'u.id,lastname,firstname', 'lastname');
             foreach($managers as $manager){
                 $managersmenu[$manager->id] = fullname($manager);

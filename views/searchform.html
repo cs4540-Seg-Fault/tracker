@@ -43,18 +43,22 @@ var datereporteditems = ['day','month','year'];
         <td align="right" width="130" valign="top"><b><?php print_string('reportedby', 'tracker') ?>:</b><br /></td>
         <td width="180" valign="top" align="left">
 <?php
-    $reporters = tracker_getreporters($tracker->id);
+	if(has_capability('mod/tracker:viewallissues', $context)) {
+    	$reporters = tracker_getreporters($tracker->id);
 
-    $reportersmenu = array();
-    if ($reporters){
-        foreach($reporters as $reporter){
-            $reportersmenu[$reporter->id] = fullname($reporter);
-        }
-        echo html_writer::select($reportersmenu, 'reportedby', '', array('' => get_string('any', 'tracker')));
-    }
-    else{
-        print_string('noreporters', 'tracker');
-    }
+    	$reportersmenu = array();
+    	if ($reporters){
+        	foreach($reporters as $reporter){
+            	$reportersmenu[$reporter->id] = fullname($reporter);
+        	}
+        	echo html_writer::select($reportersmenu, 'reportedby', '', array('' => get_string('any', 'tracker')));
+    	}
+    	else{
+        	print_string('noreporters', 'tracker');
+    	}
+	} else {
+		echo fullname($USER);
+	}
 ?>
         </td>
         <td align="right" width="200"><b><?php print_string('datereported', 'tracker') ?>:</b></td>

@@ -55,17 +55,17 @@ if (isset($searchqueries)){
     $sql = $searchqueries->search;
     $numrecords = $DB->count_records_sql($searchqueries->count);
 } else {
-    if ($resolved){
-        $resolvedclause = " AND
-           (status = ".RESOLVED." OR
-           status = ".ABANDONNED.")
-        ";
-    } else {
-        $resolvedclause = " AND
-           status <> ".RESOLVED." AND
-           status <> ".ABANDONNED."
-        ";
-    }
+//     if ($resolved){
+//         $resolvedclause = " AND
+//            (status = ".RESOLVED." OR
+//            status = ".ABANDONNED.")
+//         ";
+//     } else {
+//         $resolvedclause = " AND
+//            status <> ".RESOLVED." AND
+//            status <> ".ABANDONNED."
+//         ";
+//     }
 
     $sql = "
         SELECT 
@@ -85,7 +85,6 @@ if (isset($searchqueries)){
         WHERE 
             i.reportedby = {$USER->id} AND 
             i.trackerid = {$tracker->id}
-            $resolvedclause
         GROUP BY 
             i.id,
             i.summary, 
@@ -103,7 +102,6 @@ if (isset($searchqueries)){
         WHERE 
             i.reportedby = {$USER->id} AND 
             i.trackerid = {$tracker->id}
-            $resolvedclause
     ";
     $numrecords = $DB->count_records_sql($sqlcount);
 }

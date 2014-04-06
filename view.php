@@ -15,9 +15,6 @@
 	require_once($CFG->dirroot."/mod/tracker/lib.php");
 	require_once($CFG->dirroot."/mod/tracker/locallib.php");
 
-	// $usehtmleditor = false;
-	// $editorfields = '';
-
 	/// Check for required parameters - Course Module Id, trackerID, 
 
 	$id = optional_param('id', 0, PARAM_INT); // Course Module ID, or
@@ -93,8 +90,7 @@
 	    tracker_viewreport($tracker->id);
 	} elseif ($action == 'clearsearch'){
 	    if (tracker_clearsearchcookies($tracker->id)){
-	        $returnview = ($tracker->supportmode == 'bugtracker') ? 'browse' : 'mytickets' ;
-	        redirect("view.php?id={$cm->id}&amp;screen={$returnview}");
+	        redirect("view.php?id={$cm->id}&amp;screen=search");
 	    }
 	}
 
@@ -146,7 +142,6 @@
 		$rows[0][] = new tabobject('reportanissue', "view.php?id={$cm->id}&amp;view=reportanissue", get_string('newissue', 'tracker'));
 	}
 	$rows[0][] = new tabobject('view', "view.php?id={$cm->id}&amp;view=view", get_string('view', 'tracker').' ('.$totalissues.' '.get_string('issues','tracker').')');
-	//$rows[0][] = new tabobject('resolved', "view.php?id={$cm->id}&amp;view=resolved", get_string('resolvedplural', 'tracker').' ('.$totalresolvedissues.' '.get_string('issues','tracker').')');
 	$rows[0][] = new tabobject('profile', "view.php?id={$cm->id}&amp;view=profile", get_string('profile', 'tracker'));
 	if (has_capability('mod/tracker:viewreports', $context)){
 		$rows[0][] = new tabobject('reports', "view.php?id={$cm->id}&amp;view=reports", get_string('reports', 'tracker'));
@@ -169,45 +164,28 @@
 	        	$screen = 'search';
 	        }
 	        
-	        //only display the option to view my tickets if they cannot manage
-	        if(!has_capability('mod/tracker:manage', $context)) {
-	        	$rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets", get_string('mytickets', 'tracker'));
-	        }
+	        // display the option to search
+	        $rows[1][] = new tabobject('search', "view.php?id={$cm->id}&amp;view=view&amp;screen=search", get_string('search', 'tracker'));
 	        
 	        // only display the option to view my work if the user can be assigned to tickets
 	        if(has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context) || has_capability('mod/tracker:develop', $context)) {
 	        	$rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
 	        }
 	        
-	        // only display the option to view all issues if the user has that capability
-	        if (has_capability('mod/tracker:viewallissues', $context) || $tracker->supportmode == 'bugtracker'){
-	            $rows[1][] = new tabobject('browse', "view.php?id={$cm->id}&amp;view=view&amp;screen=browse", get_string('browse', 'tracker'));
-	        }
-	        
-	        // display the option to search
-	        $rows[1][] = new tabobject('search', "view.php?id={$cm->id}&amp;view=view&amp;screen=search", get_string('search', 'tracker'));
 	        break;
-// 	    case 'resolved' :
-// 	        if (!preg_match("/mytickets|browse/", $screen)) $screen = 'mytickets';
-// 	        $rows[1][] = new tabobject('mytickets', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=mytickets", get_string('mytickets', 'tracker'));
-// 	        //$rows[1][] = new tabobject('mywork', "view.php?id={$cm->id}&amp;view=view&amp;screen=mywork", get_string('mywork', 'tracker'));
-// 	        if (has_capability('mod/tracker:viewallissues', $context) || $tracker->supportmode == 'bugtracker'){
-// 	            $rows[1][] = new tabobject('browse', "view.php?id={$cm->id}&amp;view=resolved&amp;screen=browse", get_string('browse', 'tracker'));
-// 	        }
-// 	    	break;
 	    case 'profile':
 	        if (!preg_match("/myprofile|mypreferences|mywatches/", $screen)) $screen = 'myprofile';
 	        $rows[1][] = new tabobject('myprofile', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myprofile", get_string('myprofile', 'tracker'));
 	        $rows[1][] = new tabobject('mypreferences', "view.php?id={$cm->id}&amp;view=profile&amp;screen=mypreferences", get_string('mypreferences', 'tracker'));
 	        $rows[1][] = new tabobject('mywatches', "view.php?id={$cm->id}&amp;view=profile&amp;screen=mywatches", get_string('mywatches', 'tracker'));
 	        //$rows[1][] = new tabobject('myqueries', "view.php?id={$cm->id}&amp;view=profile&amp;screen=myqueries", get_string('myqueries', 'tracker'));
-	    break;
+	    	break;
 	    case 'reports':
 	        if (!preg_match("/status|evolution|print/", $screen)) $screen = 'status';
 	        $rows[1][] = new tabobject('status', "view.php?id={$cm->id}&amp;view=reports&amp;screen=status", get_string('status', 'tracker'));
 	        $rows[1][] = new tabobject('evolution', "view.php?id={$cm->id}&amp;view=reports&amp;screen=evolution", get_string('evolution', 'tracker'));
 	        $rows[1][] = new tabobject('print', "view.php?id={$cm->id}&amp;view=reports&amp;screen=print", get_string('print', 'tracker'));
-	    break;
+	    	break;
 	    case 'admin':
 	        if (!preg_match("/summary|manageelements|managenetwork/", $screen)) $screen = 'summary';
 	        $rows[1][] = new tabobject('summary', "view.php?id={$cm->id}&amp;view=admin&amp;screen=summary", get_string('summary', 'tracker'));
@@ -252,25 +230,18 @@
 	    }
 	    if ($result != -1){
 	        switch($screen){
-	            case 'mytickets': 
-	                $resolved = 0;
-	                include "views/viewmyticketslist.php";
-	                break;
-	            case 'mywork': 
-	                $resolved = 0;
-	                include "views/viewmyassignedticketslist.php";
-	                break;
-	            case 'browse': 
-	                if (!has_capability('mod/tracker:viewallissues', $context)){
-	                    print_error ('errornoaccessallissues', 'tracker');
-	                } else {
-	                    $resolved = 0;
-	                    include "views/viewissuelist.php";
-	                } 
-	                break;
 	            case 'search': 
 	                include "views/searchform.html";
+	                if (has_capability('mod/tracker:viewallissues', $context)){
+	                	include "views/viewissuelist.php";
+	                } else {
+	                	include "views/viewmyticketslist.php";
+	                }       
 	                break;
+	            case 'mywork':
+	            	$resolved = 0;
+                	include "views/viewmyassignedticketslist.php";
+                	break;
 	            case 'viewanissue' :
 	                ///If user it trying to view an issue, check to see if user has privileges to view this issue
                     if (!has_capability('mod/tracker:seeissues', $context)){
@@ -288,32 +259,10 @@
 	                break;
 	        }
 	    }
-// 	} elseif ($view == 'resolved'){ 
-// 	    $result = 0 ;
-// 	    if ($action != ''){
-// 	        $result = include "views/view.controller.php";
-// 	    }
-// 	    if ($result != -1){
-// 	        switch($screen){
-// 	            case 'mytickets': 
-// 	                $resolved = 1;
-// 	                include "views/viewmyticketslist.php";
-// 	                break;
-// 	            case 'browse': 
-// 	                if (!has_capability('mod/tracker:viewallissues', $context)){
-// 	                    print_error('errornoaccessallissues', 'tracker');
-// 	                } else {
-// 	                    $resolved = 1;
-// 	                    include "views/viewissuelist.php";
-// 	                } 
-// 	                break;
-// 	        }
-// 	    }
 	} elseif ($view == 'reports') {
 		
 		if (!has_capability('mod/tracker:viewreports', $context)){
 			print_error('accessdenied', 'tracker');
-			//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
 		}
 		
         switch($screen){
@@ -331,7 +280,6 @@
 		
 		if (!has_capability('mod/tracker:configure', $context)){
 			print_error('accessdenied', 'tracker');
-			//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
 		}
 		
 	    $result = 0;
@@ -349,7 +297,6 @@
 	            case 'managenetwork': 
 	            	if (!has_capability('mod/tracker:configurenetwork', $context)){
 	            		print_error('accessdenied', 'tracker');
-	            		//redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=mytickets");
 	            	}
 	                include "views/admin_mnetwork.html";
 	                break;
@@ -372,9 +319,6 @@
 	            case 'mywatches' :
 	                include "views/mywatches.html";
 	                break;
-	            /*case 'myqueries':
-	                include "views/myqueries.html";
-	                break;*/
 	        }
 	    }
 	} else {
