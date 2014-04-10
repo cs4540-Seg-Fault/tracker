@@ -779,11 +779,7 @@ function tracker_searchforissues(&$tracker, $cmid){
     $success = tracker_setsearchcookies($fields);
     
     if ($success){
-        if ($tracker->supportmode == 'bugtracker'){
-            redirect ("view.php?id={$cmid}&amp;view=view&amp;screen=browse");
-        } else {
-            redirect("view.php?id={$cmid}&amp;view=view&amp;screen=mytickets");
-		}
+        redirect("view.php?id={$cmid}&amp;view=view&amp;screen=search");
     } else {
         print_error('errorcookie', 'tracker', '', $cookie);
     }

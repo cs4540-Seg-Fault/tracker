@@ -45,11 +45,6 @@ if ($action == 'submitanissue'){
     $stc->statusfrom = POSTED;
     $stc->statusto = POSTED;    
     $DB->insert_record('tracker_state_change', $stc);
-    //echo $OUTPUT->box_start('center', '80%', '', '', 'generalbox', 'bugreport');
-    //print_string('thanks', 'tracker');
-    //echo $OUTPUT->box_end();
-    //echo $OUTPUT->continue_button("view.php?id={$cm->id}view=view&amp;screen=mytickets");
-    // notify all admins
     if ($tracker->allownotifications){
         tracker_notify_submission($issue, $cm, $tracker);
         if ($issue->assignedto){
@@ -57,7 +52,6 @@ if ($action == 'submitanissue'){
         }
     }
     redirect("view.php?id={$cm->id}&amp;view=view&amp;screen=search");
-    //return -1;
 }
 /************************************* update an issue *****************************/
 elseif ($action == 'updateanissue'){
