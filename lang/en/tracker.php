@@ -6,25 +6,25 @@ $string['pluginadministration'] = 'Tracker administration';
 
 // Capabilities
 $string['tracker:addinstance'] = 'Add a tracker';
-$string['tracker:canbecced'] = 'Can be choosen for cc';
+$string['tracker:canbecced'] = 'Can be chosen for cc';
 $string['tracker:comment'] = 'Comment issues';
 $string['tracker:configure'] = 'Configure tracker options';
 $string['tracker:configurenetwork'] = 'Configure network features';
-$string['tracker:develop'] = 'Be choosen to resolve tickets';
+$string['tracker:develop'] = 'Be chosen to resolve tickets';
 $string['tracker:manage'] = 'Manage issues';
 $string['tracker:managepriority'] = 'Manage priority of entries';
 $string['tracker:managewatches'] = 'Manage watches on ticket';
 $string['tracker:report'] = 'Report tickets';
 $string['tracker:resolve'] = 'Resolve tickets';
-$string['tracker:seeissues'] = 'See issue content';
+$string['tracker:seeissues'] = 'See ticket content';
 $string['tracker:shareelements'] = 'Share elements at site level';
 $string['tracker:viewallissues'] = 'See all tickets';
 $string['tracker:viewpriority'] = 'View priority of my owned tickets';
-$string['tracker:viewreports'] = 'View issue work reports';
+$string['tracker:viewreports'] = 'View ticket work reports';
 
 $string['AND'] = 'AND';
 $string['IN'] = 'IN';
-$string['abandonned'] = 'Abandonned';
+$string['abandonned'] = 'Abandoned';
 $string['action'] = 'Action';
 $string['activeplural'] = 'Actives';
 $string['addacomment'] = 'Add a comment';
@@ -34,7 +34,7 @@ $string['addawatcher'] = 'Add a watcher';
 $string['addtothetracker'] = 'Add to this tracker';
 $string['administration'] = 'Administration';
 $string['administrators'] = 'Administrators';
-$string['alltracks'] = 'Watch my work in all trackers';
+$string['alltracks'] = 'Watch my work on all trackers';
 $string['any'] = 'All';
 $string['askraise'] = 'Ask resolvers to raise priority';
 $string['assignedto'] = 'Assigned to';
@@ -68,7 +68,7 @@ $string['currentbinding'] = 'Current cascade';
 $string['database'] = 'Database';
 $string['datereported'] = 'Report date';
 $string['defaultassignee'] = 'Default assignee';
-$string['deleteattachedfile'] = 'Delete attachement';
+$string['deleteattachedfile'] = 'Delete attachment';
 $string['dependancies'] = 'Dependencies';
 $string['dependson'] = 'Depends on ';
 $string['descriptionisempty'] = 'Description is empty';
@@ -100,20 +100,20 @@ $string['emailoptions'] = 'Mail options';
 $string['emergency'] = 'Urgent query';
 $string['emptydefinition'] = 'Target tracker has no definition.';
 $string['enablecomments'] = 'Allow comments';
-$string['enablecomments_help'] = 'When this option is enabled, readers of issue records can add comments in the tracker.';
-$string['erroraddissueattribute'] = 'Could not submit issue(s) attribute(s). Case {$a} ';
+$string['enablecomments_help'] = 'When this option is enabled, readers of ticket records can add comments in the tracker.';
+$string['erroraddissueattribute'] = 'Could not submit ticket(s) attribute(s). Case {$a} ';
 $string['erroralreadyinuse'] = 'Element already in use';
 $string['errorannotdeletecarboncopies'] = 'Cannot delete carbon copies for user : {$a}';
 $string['errorannotdeletequeryid'] = 'Cannot delete query id: {$a}';
-$string['errorbadlistformat'] = 'Only numbers (or a list of numbers seperated by a comma (",") allowed in the issue number field';
+$string['errorbadlistformat'] = 'Only numbers (or a list of numbers separated by a comma (",") allowed in the ticket number field';
 $string['errorcannotaddelementtouse'] = 'Cannot add element to list of elements to use for this tracker';
-$string['errorcannotclearelementsforissue'] = 'Could not clear elements for issue {$a}';
+$string['errorcannotclearelementsforissue'] = 'Could not clear elements for ticket {$a}';
 $string['errorcannotcreateelementoption'] = 'Could not create element option';
-$string['errorcannotdeletearboncopyforuser'] = 'Cannot delete carbon copy {$a->issue} for user : {$a->userid}';
+$string['errorcannotdeletearboncopyforuser'] = 'Cannot delete carbon copy {$a->ticket} for user : {$a->userid}';
 $string['errorcannotdeletecc'] = 'Cannot delete carbon copy';
 $string['errorcannotdeleteelement'] = 'Cannot delete element from list of elements to use for this tracker';
 $string['errorcannotdeleteelementtouse'] = 'Cannot delete element from list of elements to use for this tracker';
-$string['errorcannotdeleteolddependancy'] = 'Could not delete old dependancies';
+$string['errorcannotdeleteolddependancy'] = 'Could not delete old dependencies';
 $string['errorcannotdeleteoption'] = 'Error trying to delete element option';
 $string['errorcannoteditwatch'] = 'Cannot edit this watch';
 $string['errorcannothideelement'] = 'Cannot hide element from form for this tracker';
@@ -122,16 +122,16 @@ $string['errorcannotsaveprefs'] = 'Could not insert preference record';
 $string['errorcannotsetparent'] = 'Cannot set parent in this tracker';
 $string['errorcannotshowelement'] = 'Cannot show element in form for this tracker';
 $string['errorcannotsubmitticket'] = 'Error registering new ticket';
-$string['errorcannotujpdateoptionbecauseused'] = 'Cannot update the element option because it is currently being used as a attribute for an issue';
+$string['errorcannotujpdateoptionbecauseused'] = 'Cannot update the element option because it is currently being used as a attribute for an ticket';
 $string['errorcannotunbindparent'] = 'Cannot unbind parent of this tracker';
 $string['errorcannotupdateelement'] = 'Could not update element';
-$string['errorcannotupdateissuecascade'] = 'Could not update issue for cascade';
+$string['errorcannotupdateissuecascade'] = 'Could not update ticket for cascade';
 $string['errorcannotupdateprefs'] = 'Could not update preference record';
-$string['errorcannotupdatetrackerissue'] = 'Could not update tracker issue';
+$string['errorcannotupdatetrackerissue'] = 'Could not update tracker ticket';
 $string['errorcannotupdatewatcher'] = 'Could not update watcher';
 $string['errorcannotviewelementoption'] = 'Cannot view element options';
 $string['errorcannotwritecomment'] = 'Error writing comment';
-$string['errorcannotwritedependancy'] = 'Could not write dependancy record';
+$string['errorcannotwritedependancy'] = 'Could not write dependency record';
 $string['errorcanotaddelementtouse'] = 'Cannot add element to list of elements to use for this tracker';
 $string['errorcookie'] = 'Failed to set cookie: {$a} .';
 $string['errorcoursemisconfigured'] = 'Course is misconfigured';
@@ -142,10 +142,10 @@ $string['errorelementinuse'] = 'Element already in use';
 $string['errorfindingaction'] = 'Error:  Cannot find action: {$a}';
 $string['errorinvalidtrackerelementid'] = 'Invalid element. Cannot edit element id';
 $string['errormoduleincorrect'] = 'Course module is incorrect';
-$string['errornoaccessallissues'] = 'You do not have access to view all issues.';
-$string['errornoaccessissue'] = 'You do not have access to view this issue.';
-$string['errornoeditissue'] = 'You do not have access to edit this issue.';
-$string['errorrecordissue'] = 'Could not submit issue'; 
+$string['errornoaccessallissues'] = 'You do not have access to view all tickets.';
+$string['errornoaccessissue'] = 'You do not have access to view this ticket.';
+$string['errornoeditissue'] = 'You do not have access to edit this ticket.';
+$string['errorrecordissue'] = 'Could not submit ticket'; 
 $string['errorremote'] = 'Error on remote side<br/> {$a} ';
 $string['errorremote'] = 'Remote error: {$a}';
 $string['errorremotesendingcascade'] = 'Error on sending cascade :<br/> {$a}';
@@ -153,24 +153,24 @@ $string['errorunabletosabequery'] = 'Unable to save query as query';
 $string['errorunabletosavequeryid'] = 'Unable to update query id {$a}';
 $string['errorupdateelement'] = 'Could not update element';
 $string['evolution'] = 'Trends';
-$string['evolutionbymonth'] = 'Issue state evolution';
+$string['evolutionbymonth'] = 'ticket state evolution';
 $string['file'] = 'Attached file';
 $string['follow'] = 'Follow';
 $string['generaltrend'] = 'Trend';
-$string['hassolution'] = 'A solution is published for this issue';
+$string['hassolution'] = 'A solution is published for this ticket';
 $string['hideccs'] = 'Hide watchers';
 $string['hidecomments'] = 'Hide comments';
-$string['hidedependancies'] = 'Hide dependancies';
+$string['hidedependancies'] = 'Hide dependencies';
 $string['hidehistory'] = 'Hide history';
 $string['history'] = 'Assignees';
-$string['iamadeveloper'] = 'I\'m a developer';
-$string['iamnotadeveloper'] = 'I\'m not a developer';
-$string['icanmanage'] = 'I can manage issue entries';
-$string['icannotmanage'] = 'I cannot manage';
-$string['icannotreport'] = 'I cannot report';
-$string['icannotresolve'] = 'I\'m not a resolver';
-$string['icanreport'] = 'I can report';
-$string['icanresolve'] = 'I am assigned on some tickets';
+$string['iamadeveloper'] = 'Remove this'; // Used to be "I'm a developer", we've deprecated it
+$string['iamnotadeveloper'] = ''; // Same
+$string['icanmanage'] = 'I can manage tickets';
+$string['icannotmanage'] = 'I cannot manage tickets';
+$string['icannotreport'] = 'I cannot report tickets';
+$string['icannotresolve'] = 'I can not resolve tickets';
+$string['icanreport'] = 'I can report tickets';
+$string['icanresolve'] = 'I can be assigned on tickets';
 $string['id'] = 'Identifier';
 $string['intest'] = 'Testing';
 $string['intro'] = 'Description';
@@ -189,7 +189,7 @@ $string['managenetwork'] = 'Cascade and network setup';
 $string['manager'] = 'Manager';
 $string['me'] = 'My profile';
 $string['mode_bugtracker'] = 'Team bug tracker';
-$string['mode_ticketting'] = 'User support ticketting';
+$string['mode_ticketting'] = 'User support ticketing';
 $string['modulename'] = 'User support - Tracker';
 $string['options'] = 'Options';
 $string['print'] = 'Print';
@@ -202,9 +202,9 @@ level to be reused in other trackers.
 
 the ticket (or task) can be assigned for work to another user.
 
-The tracked ticket is a statefull ticket that sends state change notifications to any follower that has enabled notifications. A user can choose which state changes he tracks usually.
+The tracked ticket is a state-full ticket that sends state change notifications to any follower that has enabled notifications. A user can choose which state changes he tracks usually.
 
-Tickets can be chained in dependancy, so it may be easy to follow a cause/consequence ticket sequence.
+Tickets can be chained in dependency, so it may be easy to follow a cause/consequence ticket sequence.
 
 History of changes are tracked for each ticket.
 
@@ -227,7 +227,7 @@ $string['namecannotbeblank'] = 'Name cannot be empty';
 $string['newissue'] = 'New ticket';
 $string['noassignees'] = 'No assignee';
 $string['nocomments'] = 'No comments';
-$string['nodevelopers'] = 'No developpers';
+$string['nodevelopers'] = 'No developers';
 $string['nodata'] = 'No data to show.';
 $string['noelements'] = 'No element';
 $string['noelementscreated'] = 'No element created';
@@ -259,7 +259,7 @@ $string['pages'] = 'Pages';
 $string['posted'] = 'Posted';
 $string['potentialresolvers'] = 'Potential resolvers';
 $string['preferences'] = 'Preferences';
-$string['prefsnote'] = 'Preferences setups which default notifications you may receive when creating a new entry or when you register a watch for an existing issue';
+$string['prefsnote'] = 'Preferences setups which default notifications you may receive when creating a new entry or when you register a watch for an existing ticket';
 $string['priorityid'] = 'Priority';
 $string['priority'] = 'Attributed Priority';
 $string['profile'] = 'User settings';
@@ -297,15 +297,15 @@ $string['setwhenopens'] = 'Don\'t advise me when a ticket is opened';
 $string['setwhenresolves'] = 'Don\'t advise me when a ticket is resolved';
 $string['setwhenpublished'] = 'Don\'t advise me when solution is published';
 $string['setwhentesting'] = 'Don\'t advise me when a solution is tested';
-$string['setwhenthrown'] = 'Don\'t advise me when a ticket is abandonned';
+$string['setwhenthrown'] = 'Don\'t advise me when a ticket is abandoned';
 $string['setwhenwaits'] = 'Don\'t advise me when a ticket is on hold (waiting)';
 $string['setwhenworks'] = 'Don\'t advise me when a ticket is validated';
-$string['setoncomment'] = 'Send me the coments';
-$string['sharethiselement'] = 'Turn this element sitewide';
+$string['setoncomment'] = 'Send me the comments';
+$string['sharethiselement'] = 'Turn this element site-wide';
 $string['sharing'] = 'Sharing';
 $string['showccs'] = 'Show watchers';
 $string['showcomments'] = 'Show comments';
-$string['showdependancies'] = 'Show dependancies';
+$string['showdependancies'] = 'Show dependencies';
 $string['showhistory'] = 'Show history';
 $string['site'] = 'Site';
 $string['solution'] = 'Solution';
@@ -323,24 +323,24 @@ $string['summary'] = 'Summary';
 $string['supportmode'] = 'Support mode';
 $string['supportmode_help'] = 'Support mode has effect on who have access to which ticket scope';
 $string['testing'] = 'Being tested';
-$string['text'] = 'Textfield'; // @DYNA
-$string['textarea'] = 'Textarea'; // @DYNA
+$string['text'] = 'Text-field'; // @DYNA
+$string['textarea'] = 'Text-area'; // @DYNA
 $string['thanks'] = 'Thanks to contributing to the constant enhancement of this service.';
 $string['ticketprefix'] = 'Ticket prefix';
 $string['tickets'] = 'Tickets';
 $string['tracker-levelaccess'] = 'My capabilities in this tracker';
 $string['tracker_description'] = '<p>When publishing this service, you allow trackers from {$a} to cascade the support tickets to a local tracker.</p>
-<ul><li><i>Depends on</i>: You have to suscribe {$a} to this service.</li></ul>
-<p>Suscribing to this service allows local trackers to send support tickets to some tracker in {$a}.</p>
+<ul><li><i>Depends on</i>: You have to subscribe {$a} to this service.</li></ul>
+<p>Subscribing to this service allows local trackers to send support tickets to some tracker in {$a}.</p>
 <ul><li><i>Depends on</i>: You have to publish this service on {$a}.</li></ul>';
 $string['tracker_name'] = 'Tracker module services';
 $string['tracker_service_name'] = 'Tracker module services';
 $string['trackerelements'] = 'Tracker\'s definition';
-$string['trackereventchanged'] = 'Issue state change in tracker [{$a}]';
+$string['trackereventchanged'] = 'ticket state change in tracker [{$a}]';
 $string['trackerhost'] = 'Parent host for tracker';
 $string['trackername'] = 'Tracker name';
-$string['transfer'] = 'Transfered';
-$string['transfered'] = 'Transfered';
+$string['transfer'] = 'Transferred';
+$string['transfered'] = 'Transferred';
 $string['transferservice'] = 'Support ticket cascading';
 $string['turneditingoff'] = 'Turn editing off';
 $string['turneditingon'] = 'Turn editing on';
@@ -354,12 +354,12 @@ $string['unsetwhenopens'] = 'Advise me when a ticket is opened';
 $string['unsetwhenresolves'] = 'Advise me when a ticket is resolved';
 $string['unsetwhenpublished'] = 'Advise me when solution is published';
 $string['unsetwhentesting'] = 'Advise me when a solution is tested';
-$string['unsetwhenthrown'] = 'Advise me when a ticket is abandonned';
+$string['unsetwhenthrown'] = 'Advise me when a ticket is abandoned';
 $string['unsetwhenwaits'] = 'Advise me when a ticket is on hold (waiting)';
 $string['unsetwhenworks'] = 'Advise me when a ticket is validated';
 $string['urgentraiserequestcaption'] = 'A user has requested an urgent priority demand';
 $string['urgentsignal'] = 'URGENT QUERY';
-$string['view'] = 'Tickets';
+$string['view'] = 'Views';
 $string['vieworiginal'] = 'See original';
 $string['voter'] = 'Vote';
 $string['validated'] = 'Validated';
@@ -371,10 +371,10 @@ $string['statehistory'] = 'States';
 // help strings
 
 $string['elements_help'] = '<p>
-Issue submission form can be customized by adding form elements. The "summary", "description", et "reportedby" fields are as default, but any additional qualifier can be added to the issue description.
+ticket submission form can be customized by adding form elements. The "summary", "description", et "reportedby" fields are as default, but any additional qualifier can be added to the ticket description.
 </p>
 <p>
-Elements that can be added are "form elements" i.e. standard form widgets that can represent any qualifier or open description, such as radio buttons, checkboxes, dropdown, textfields or textareas.
+Elements that can be added are "form elements" (I.E. standard form widgets that can represent any qualifier or open description, such as radio buttons, checkboxes, dropdown, textfields or textareas).
 </p>
 <p>Elements are set using the following properties:
 </p>
@@ -386,7 +386,7 @@ Elements that can be added are "form elements" i.e. standard form widgets that c
 <p>Some elements have a finite list of option values.
 </p>
 <p>Options are added after the element is created.</p>
-<p>Fieldtexts and textareas do not have any options.</p> ';
+<p>Field-texts and text-areas do not have any options.</p> ';
 
 $string['options_help'] = '<h3>A name</h3>
 <p>The name identifies the option value. It should be a token using alphanumeric chars and _ without spaces or non printable chars.</p>
@@ -397,26 +397,26 @@ $string['options_help'] = '<h3>A name</h3>
 
 <p>You may define the order in which the options appear in the lists.</p>
 
-<p>Textfield and textarea elements do not have any options.</p> ';
+<p>Text-field and text-area elements do not have any options.</p> ';
 
 
 $string['ticketprefix_help'] = '## Task Tracking / User support
 
 ### Ticket Prefix
 
-This parameter allows defining a fixed prefix thatt will be prepended to the issue numerical identifier. This should allow better identification of a issue entry in documents, forum posts...';
+This parameter allows defining a fixed prefix that will be added on to the ticket numerical identifier. This should allow better identification of a ticket entry in documents, forum posts...';
 
 $string['urgentquery_help'] = '## Task Tracking / User support
 
 ### Urgent query
 
-Checking this checkbox will send a signal to developpers or tickets managers so your issue can be considered more quickly.
+Checking this check-box will send a signal to developers or tickets managers so your ticket can be considered more quickly.
 
-Please consider although that there is no automated process using directly this variable. The acceptation of the emergency will be depending on how urgent support administrators have considered your demand.';
+Please consider although that there is no automated process using directly this variable. The acceptance of the emergency will depend on how urgent support administrators have considered your demand.';
 
 $string['mods_help'] = '
-This module provides an amdinistrator or techical operator a way to collect locally issues on a Moodle implementation. It may be used mainly as an overall system tool for Moodle administration and support to end users, but also can be used as any other module for student projects. It can be instanciated several times within a course space. 
-The issue description form is fully customisable. The tracker administrator can add as many description he needs by adding form elements. The integrated search engine do ajust itself to this customization.';
+This module provides an administrator or technical operator a way to collect locally issues on a Moodle implementation. It may be used mainly as an overall system tool for Moodle administration and support to end users, but also can be used as any other module for student projects. It can be instantiated several times within a course space. 
+The ticket description form is fully customisable. The tracker administrator can add as many description he needs by adding form elements. The integrated search engine do adjust itself to this customization.';
 
 $string['defaultassignee_help'] = '
 
