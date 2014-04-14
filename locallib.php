@@ -400,6 +400,15 @@ function tracker_constructsearchqueries($trackerid, $fields, $own = false){
             }
             $elementsSearchConstraint .= ')';
         }
+        
+        if ($key == 'status'){
+        	 $elementsSearchConstraint .= ' AND (';
+        	 for($i = 0; $i < count($fields[$key]); $i++) {
+        	 		$statusid = $fields[$key][$i];
+        	 		$elementsSearchConstraint .= ($i == 0) ? 'i.status = ' . $statusid . ' ': ' OR i.status = ' . $statusid . ' ';
+        	 }
+        	 $elementsSearchConstraint .= ')';
+        }
 
         if ($key == 'datereported' && array_key_exists('checkdate', $fields) ){
             $datebegin = $fields[$key][0];
@@ -430,6 +439,8 @@ function tracker_constructsearchqueries($trackerid, $fields, $own = false){
                 $elementsSearchConstraint .= ' AND i.id IN (SELECT issue FROM {tracker_issueattribute} WHERE elementdefinition=' . $key . ' AND elementitemid=' . $value . ')';
             }
         }
+        
+        
     }
     if ($own == false){
         $sql->search = "
@@ -526,6 +537,8 @@ function tracker_extractsearchparametersfrompost(){
     $count = 0;
     $fields = array();
     $issuenumber = optional_param('issueid', '', PARAM_CLEANHTML);
+    $status_list = optional_param('status', '', PARAM_CLEANHTML);
+    
     if (!empty ($issuenumber)){
         $issuenumberarray = explode(',', $issuenumber);
         foreach ($issuenumberarray as $issueid){
@@ -563,6 +576,19 @@ function tracker_extractsearchparametersfrompost(){
         if (!empty($summary)){  
             $fields['summary'][] = $summary;
         }
+        
+        $status_list = optional_param('status', '', PARAM_CLEANHTML);
+        
+     		if (count($status_list > 0))
+     		{
+        		for ($i = 0; $i < count($status_list); $i++)
+	        	{
+	        		if (!is_numeric($status_list[$i]))
+	        			continue;
+	        		
+	        		$fields['status'][] = $status_list[$i];
+	        	}
+     		}
         
         $keys = array_keys($_POST);                         // get the key value of all the fields submitted
         $elementkeys = preg_grep('/element./' , $keys);     // filter out only the element keys
@@ -706,11 +732,13 @@ function tracker_setsearchcookies($fields){
     $success = true;
     if (is_array($fields)){
         $keys = array_keys($fields);
+       
         
         foreach ($keys as $key){
             $cookie = '';
+            
             foreach ($fields[$key] as $value){
-                if (empty($cookie)){
+                if (strlen($cookie) == 0){
                     $cookie = $cookie . $value;
                 }       
                 else{

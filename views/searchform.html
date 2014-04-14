@@ -86,6 +86,20 @@ var datereporteditems = ['day','month','year'];
              <input name="description" type="text" value="" size="70" maxlength="100">
         </td>
     </tr>
+    <tr>
+      <td align="right" valign="top">
+          <b>Filter by Status:</b>
+          <br />
+          (Control click to select multiple)
+      </td>
+      <td align="left" colspan="3">
+        <select multiple="multiple" name="status[]">
+          <?php for ($i = 0; $i < count($STATUSKEYS); $i++) { ?>
+            <option value="<?php echo $i; ?>"><?php echo $STATUSKEYS[$i]; ?></option>    
+          <?php } ?>
+        </select>
+      </td>
+    </tr>
     
     <!--Print Bug Category Dropdowns-->
     <tr>

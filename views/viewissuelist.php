@@ -31,6 +31,7 @@ $STATUSKEYS = array(POSTED => get_string('posted', 'tracker'),
 if (!isset($fields)){
     $fields = tracker_extractsearchcookies();
 }
+
 if (!empty($fields)){
     $searchqueries = tracker_constructsearchqueries($tracker->id, $fields);
 }
