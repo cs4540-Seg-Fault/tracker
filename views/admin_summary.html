@@ -113,7 +113,7 @@ $OUTPUT->box_start('center', '100%', '', '', 'generalbox', 'bugreport');
 		<td align="right"><b><?php print_string('potentialresolvers', 'tracker') ?>:</b></td>
 		<td align="left">
 <?php
-				$developers = tracker_getdevelopers($context);
+				$developers = tracker_getresolvers($context);
 				if (!empty($developers)){				
 					$keys = array_keys($developers);
 					for ($j = 0; $j < sizeof($keys); $j++){

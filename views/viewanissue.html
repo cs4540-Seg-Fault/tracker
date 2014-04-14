@@ -246,12 +246,12 @@ if ($tracker->enablecomments){
 }
 
 $transferlink = '';
-if ($tracker->parent && $issue->status != TRANSFERED && (has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context) || has_capability('mod/tracker:develop', $context))){
+if ($tracker->parent && $issue->status != TRANSFERED && (has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context))){
     $transferlink = " - <a href=\"view.php?id={$cm->id}&amp;what=cascade&amp;issueid={$issueid}\">".get_string('cascade','tracker')."</a>";
 }
 
 $distribute = '';
-if ($tracker->subtrackers && $issue->status != TRANSFERED && (has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context) || has_capability('mod/tracker:develop', $context))){
+if ($tracker->subtrackers && $issue->status != TRANSFERED && (has_capability('mod/tracker:manage', $context) || has_capability('mod/tracker:resolve', $context))){
 	$choosetargetstr = get_string('choosetarget', 'tracker');
 	$distribute .= " <form name=\"distribute\" style=\"display:inline\">";
 	$distribute .= "<input type=\"hidden\" name=\"what\" value=\"distribute\" >";
@@ -266,7 +266,7 @@ if ($tracker->subtrackers && $issue->status != TRANSFERED && (has_capability('mo
 			$targetcm = $DB->get_record('course_modules', array('instance' => $st->id, 'module' => $trackermoduleid));
 			$courseshort = $DB->get_field('course', 'shortname', array('id' => $st->course));
 			$targetcontext = context_module::instance($targetcm->id);
-			if (has_any_capability(array('mod/tracker:manage', 'mod/tracker:develop', 'mod/tracker:resolve'), $targetcontext)){
+			if (has_any_capability(array('mod/tracker:manage', 'mod/tracker:resolve'), $targetcontext)){
 				$distribute .= "<option value=\"{$st->id}\">{$courseshort} - {$st->name}</option>";
 			}
 		}

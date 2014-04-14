@@ -29,13 +29,15 @@ echo "<u>" . $OUTPUT->heading(get_string('me', 'tracker')) . "</u>";
 		<td align="right" valign="top"><b><?php print_string('tracker-levelaccess', 'tracker') ?>:</b></td>
 		<td align="left" valign="top">
 			<?php 
-			    echo ($reporter = has_capability('mod/tracker:report', $context)) ? '<span class="green">'.get_string('icanreport', 'tracker').'</span>' : '<span class="red">'.get_string('icannotreport', 'tracker').'</span>' ;
-			    echo '<br/>';
-			    echo ($developer = has_capability('mod/tracker:develop', $context)) ? '<span class="green">'.get_string('iamadeveloper', 'tracker').'</span>' : '<span class="red">'.get_string('iamnotadeveloper', 'tracker').'</span>' ;
-			    echo '<br/>';
-			    echo ($resolver = has_capability('mod/tracker:resolve', $context)) ? '<span class="green">'.get_string('icanresolve', 'tracker').'</span>' : '<span class="red">'.get_string('icannotresolve', 'tracker').'</span>' ;
-			    echo '<br/>';
-			    echo ($manager = has_capability('mod/tracker:manage', $context)) ? '<span class="green">'.get_string('icanmanage', 'tracker').'</span>' : '<span class="red">'.get_string('icannotmanage', 'tracker').'</span>' ;
+				if(has_capability('mod/tracker:report', $context)) {
+					echo '<span class="green">'.get_string('icanreport', 'tracker').'</span><br/>';
+				}
+				if(has_capability('mod/tracker:resolve', $context)) {
+					echo '<span class="green">'.get_string('icanresolve', 'tracker').'</span><br/>';
+				}
+				if(has_capability('mod/tracker:manage', $context)) {
+					echo '<span class="green">'.get_string('icanmanage', 'tracker').'</span><br/>';
+				}
 			?>
 		</td>
 	</tr>

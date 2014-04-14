@@ -225,7 +225,7 @@ if (!empty($issues)){
         $datereported = date('Y/m/d h:i', $issue->datereported);
         if (has_capability('mod/tracker:manage', $context)){ // managers can assign bugs
             $status = choose_from_menu($STATUSKEYS, "status{$issue->id}", $issue->status, '', "document.forms['manageform'].schanged{$issue->id}.value = 1;", '', true). "<input type=\"hidden\" name=\"schanged{$issue->id}\" value=\"0\" />";
-            $developers = get_users_by_capability($context, 'mod/tracker:develop', 'u.id,lastname,firstname', 'lastname');
+            $developers = get_users_by_capability($context, 'mod/tracker:resolve', 'u.id,lastname,firstname', 'lastname');
             foreach($developers as $developer){
                 $developersmenu[$developer->id] = fullname($developer);
             }

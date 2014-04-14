@@ -225,7 +225,7 @@ if (!empty($issues)){
         $user = $DB->get_record('user', array('id' => $issue->assignedto));
         if (has_capability('mod/tracker:manage', $context)){ // managers can assign bugs
         	$status = html_writer::select($STATUSKEYS, "status{$issue->id}", $issue->status, array('' => 'choose'), array('onchange' => "document.forms['manageform'].schanged{$issue->id}.value = 1;"));
-            $developers = get_users_by_capability($context, 'mod/tracker:develop', 'u.id,lastname,firstname', 'lastname');
+            $developers = get_users_by_capability($context, 'mod/tracker:resolve', 'u.id,lastname,firstname', 'lastname');
             foreach($developers as $developer){
                 $developersmenu[$developer->id] = fullname($developer);
             }

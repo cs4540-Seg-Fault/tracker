@@ -405,7 +405,7 @@ elseif ($action == 'distribute'){
 	$newcontext = context_module::instance($newcm->id);
 
 	// if assignee is in not this tracker remap assignee to default
-	if (!has_capability('mod/tracker:develop', $newcontext, $issue->assignedto)){
+	if (!has_capability('mod/tracker:resolve', $newcontext, $issue->assignedto)){
 		$oldassingedto = $issue->assignedto;
 		$oldstatus = $issue->status;
 		$issue->assignedto = $newtracker->defaultassignee;
