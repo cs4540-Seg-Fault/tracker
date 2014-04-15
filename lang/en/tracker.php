@@ -359,7 +359,7 @@ $string['unsetwhenwaits'] = 'Advise me when a ticket is on hold (waiting)';
 $string['unsetwhenworks'] = 'Advise me when a ticket is validated';
 $string['urgentraiserequestcaption'] = 'A user has requested an urgent priority demand';
 $string['urgentsignal'] = 'URGENT QUERY';
-$string['view'] = 'Views';
+$string['view'] = 'Tickets';
 $string['vieworiginal'] = 'See original';
 $string['voter'] = 'Vote';
 $string['validated'] = 'Validated';
@@ -371,7 +371,7 @@ $string['statehistory'] = 'States';
 // help strings
 
 $string['elements_help'] = '<p>
-ticket submission form can be customized by adding form elements. The "summary", "description", et "reportedby" fields are as default, but any additional qualifier can be added to the ticket description.
+Ticket submission form can be customized by adding form elements. The "summary", "description", et "reportedby" fields are as default, but any additional qualifier can be added to the ticket description.
 </p>
 <p>
 Elements that can be added are "form elements" (I.E. standard form widgets that can represent any qualifier or open description, such as radio buttons, checkboxes, dropdown, textfields or textareas).
